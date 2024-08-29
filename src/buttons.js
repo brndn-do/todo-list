@@ -3,6 +3,7 @@
 import { Project, Todo } from "./objects.js";
 import { display, projects, currentProject, clearForms } from "./index.js";
 
+// adds functionality to buttons
 export function setUpButtons() {
     const newProjectButton = document.querySelector("button.new-project");
     newProjectButton.addEventListener("click", () => {

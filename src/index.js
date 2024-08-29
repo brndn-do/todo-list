@@ -3,8 +3,8 @@
 "use strict";
 
 import "./styles.css";
-import {Display} from "./display.js";
-import {Todo, Project} from "./objects.js";
+import { Display } from "./display.js";
+import { Todo, Project } from "./objects.js";
 import { setUpButtons } from "./buttons.js";
 
 export const display = new Display();
@@ -14,7 +14,7 @@ export let currentProject = null;
 // given a project, sets currentProject to project and displays the todo's of that project
 export function switchProject(project) {
     currentProject = project;
-    display.displayTodos(project)
+    display.displayTodos()
 }
 
 // clears all inputs of all forms
@@ -25,11 +25,12 @@ export function clearForms() {
     }
 }
 
+// adds functionality to buttons
 setUpButtons();
 
 currentProject = new Project("Today");
 projects.push(currentProject);
-const doLeetCode = new Todo("Do LeetCode", "", "", "");
+const doLeetCode = new Todo("30 Minutes of TOP", "", "", "");
 currentProject.addTodo(doLeetCode);
-display.displayProjects(projects);
+display.displayProjects();
 switchProject(currentProject);
