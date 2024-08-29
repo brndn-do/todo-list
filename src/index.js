@@ -30,7 +30,7 @@ setUpButtons();
 
 currentProject = new Project("Today");
 projects.push(currentProject);
-const doLeetCode = new Todo("30 Minutes of TOP", "", "", "");
+const doLeetCode = new Todo("30 Minutes of TOP", "", "8/29/2024", "");
 currentProject.addTodo(doLeetCode);
 display.displayProjects();
 switchProject(currentProject);

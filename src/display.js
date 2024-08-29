@@ -15,8 +15,14 @@ export class Display {
             }
             const todoDiv = document.createElement("div");
             todoDiv.classList.add("todo-div");
-            todoDiv.textContent = todo.title;
-
+            const todoTitle = document.createElement("div");
+            todoTitle.classList.add("todo-title");
+            todoTitle.textContent = todo.title;
+            const todoDue = document.createElement("div");
+            todoDue.classList.add("todo-due");
+            todoDue.textContent = "Due " + todo.dueDate;
+            todoDiv.appendChild(todoTitle);
+            todoDiv.appendChild(todoDue);
             todoList.appendChild(todoDiv);
         }
     }

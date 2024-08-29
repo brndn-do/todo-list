@@ -31,7 +31,10 @@ export function setUpButtons() {
         event.preventDefault();
         display.hideAllForms();
         const title = document.getElementById("title").value;
-        const newTodo = new Todo(title, "", "", "");
+        const description = document.getElementById("description").value;
+        const dueDate = document.getElementById("due-date").value;
+        const priority = document.getElementById("priority").value;
+        const newTodo = new Todo(title, description, dueDate, priority);
         currentProject.addTodo(newTodo);
         display.displayTodos(currentProject);
         clearForms();
