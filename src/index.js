@@ -3,58 +3,33 @@
 "use strict";
 
 import "./styles.css";
-import {Todo, Project} from "./classes.js";
+import {Display} from "./display.js";
+import {Todo, Project} from "./objects.js";
+import { setUpButtons } from "./buttons.js";
 
-const projects = []; // list of projects
-const dialog = document.querySelector("dialog"); // dialog for submitting new project
+export const display = new Display();
+export const projects = []; // list of projects
+export let currentProject = null;
 
-// given an argument project, displays all todos of that project on the main container
-function displayTodos(project) {
-    const todoList = document.querySelector(".todo-list");
-    todoList.textContent = "";
-    for (const todo of project.todos) {
-        const todoDiv = document.createElement("div");
-        todoDiv.classList.add("todo-div");
-        todoDiv.textContent = todo.title;
+// given a project, sets currentProject to project and displays the todo's of that project
+export function switchProject(project) {
+    currentProject = project;
+    display.displayTodos(project)
+}
 
-        todoList.appendChild(todoDiv);
+// clears all inputs of all forms
+export function clearForms() {
+    const inputs = document.querySelectorAll("input");
+    for (const input of inputs) {
+        input.value = "";
     }
 }
 
-// displays all projects on the sidebar
-function displayProjects() {
-    const projectList = document.querySelector(".project-list");
-    projectList.textContent = "";
-    for (const project of projects) {
-        const projectDiv = document.createElement("div");
-        projectDiv.classList.add("project-div");
-        projectDiv.textContent = project.name;
-        projectDiv.addEventListener("click", () => {
-            // show the tasks for the project on the main
-            displayTodos(project);
-        });
-        projectList.appendChild(projectDiv);
-    }
-}
+setUpButtons();
 
-const newProjectButton = document.querySelector("button.new-project");
-newProjectButton.addEventListener("click", () => {
-    dialog.showModal();
-});
-
-const newProjectSubmit = document.querySelector(".new-project .submit");
-newProjectSubmit.addEventListener("click", (event) => {
-    event.preventDefault();
-    dialog.close();
-    const projectName = document.getElementById("project-name").value;
-    const newProject = new Project(projectName);
-    projects.push(newProject);
-    displayProjects();
-});
-
-const today = new Project("Today");
-projects.push(today);
+currentProject = new Project("Today");
+projects.push(currentProject);
 const doLeetCode = new Todo("Do LeetCode", "", "", "");
-today.addTodo(doLeetCode);
-displayProjects();
-
+currentProject.addTodo(doLeetCode);
+display.displayProjects(projects);
+switchProject(currentProject);
