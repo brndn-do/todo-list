@@ -8,6 +8,19 @@ import {Todo, Project} from "./classes.js";
 const projects = []; // list of projects
 const dialog = document.querySelector("dialog"); // dialog for submitting new project
 
+// given an argument project, displays all todos of that project on the main container
+function displayTodos(project) {
+    const todoList = document.querySelector(".todo-list");
+    todoList.textContent = "";
+    for (const todo of project.todos) {
+        const todoDiv = document.createElement("div");
+        todoDiv.classList.add("todo-div");
+        todoDiv.textContent = todo.title;
+
+        todoList.appendChild(todoDiv);
+    }
+}
+
 // displays all projects on the sidebar
 function displayProjects() {
     const projectList = document.querySelector(".project-list");
@@ -18,7 +31,7 @@ function displayProjects() {
         projectDiv.textContent = project.name;
         projectDiv.addEventListener("click", () => {
             // show the tasks for the project on the main
-            alert(project.name);
+            displayTodos(project);
         });
         projectList.appendChild(projectDiv);
     }
@@ -41,5 +54,7 @@ newProjectSubmit.addEventListener("click", (event) => {
 
 const today = new Project("Today");
 projects.push(today);
+const doLeetCode = new Todo("Do LeetCode", "", "", "");
+today.addTodo(doLeetCode);
 displayProjects();
 
