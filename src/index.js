@@ -11,7 +11,7 @@ export const display = new Display();
 export const projects = []; // list of projects
 export let currentProject = null;
 
-// given a project, sets currentProject to project and displays the todo's of that project
+// given a project, sets it as the currentProject and displays the todo's of that project
 export function switchProject(project) {
     currentProject = project;
     display.displayTodos()
