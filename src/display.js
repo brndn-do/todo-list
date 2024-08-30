@@ -9,10 +9,17 @@ export class Display {
         const description = document.querySelector(".todo-details #description");
         const dueDate = document.querySelector(".todo-details #due-date");
         const priority = document.querySelector(".todo-details #priority");
+        const complete = document.querySelector(".todo-details .complete");
         title.value = todo.title;
         description.value = todo.description;
         dueDate.value = todo.dueDate;
         priority.value = todo.priority;
+        if (currentTodo.complete) {
+            complete.textContent = "Mark Incomplete";
+        }
+        else {
+            complete.textContent = "Mark Complete";
+        }
         const dialog = document.querySelector(".todo-details");
         dialog.showModal();
     }

@@ -41,8 +41,8 @@ dialog {
 
 button.new-project,
 button.new-todo {
-    width: 50px;
-    height: 25px;
+    width: 100px;
+    height: 35px;
 }
 
 button:hover {
@@ -96,6 +96,10 @@ button:hover {
 
 .todo-div.complete {
     background-color: rgb(229, 255, 229);
+}
+
+.todo-div.complete:hover {
+    background-color: rgb(210, 235, 210);
 }
 
 .todo-due {
