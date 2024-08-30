@@ -1,8 +1,22 @@
 // display.js
 
-import { projects, currentProject, switchProject } from "./index.js"
+import { projects, currentProject, currentTodo, switchProject, switchTodo } from "./index.js"
 
 export class Display {
+    expandTodo(todo) {
+        switchTodo(todo);
+        const title = document.querySelector(".todo-details #title");
+        const description = document.querySelector(".todo-details #description");
+        const dueDate = document.querySelector(".todo-details #due-date");
+        const priority = document.querySelector(".todo-details #priority");
+        title.value = todo.title;
+        description.value = todo.description;
+        dueDate.value = todo.dueDate;
+        priority.value = todo.priority;
+        const dialog = document.querySelector(".todo-details");
+        dialog.showModal();
+    }
+
     // given a project, displays all todos of that project on the main container
     displayTodos() {
         const projectName = document.querySelector(".project-name");
@@ -15,6 +29,9 @@ export class Display {
             }
             const todoDiv = document.createElement("div");
             todoDiv.classList.add("todo-div");
+            if (todo.complete) {
+                todoDiv.classList.add("complete");
+            }
             const todoTitle = document.createElement("div");
             todoTitle.classList.add("todo-title");
             todoTitle.textContent = todo.title;
@@ -23,6 +40,9 @@ export class Display {
             todoDue.textContent = "Due " + todo.dueDate;
             todoDiv.appendChild(todoTitle);
             todoDiv.appendChild(todoDue);
+            todoDiv.addEventListener("click", () => {
+                this.expandTodo(todo);
+            });
             todoList.appendChild(todoDiv);
         }
     }

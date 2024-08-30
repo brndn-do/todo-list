@@ -10,11 +10,16 @@ import { setUpButtons } from "./buttons.js";
 export const display = new Display();
 export const projects = []; // list of projects
 export let currentProject = null;
+export let currentTodo = null;
 
 // given a project, sets it as the currentProject and displays the todo's of that project
 export function switchProject(project) {
     currentProject = project;
     display.displayTodos()
+}
+
+export function switchTodo(todo) {
+    currentTodo = todo;
 }
 
 // clears all inputs of all forms

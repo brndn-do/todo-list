@@ -1,7 +1,7 @@
 //buttons.js
 
 import { Project, Todo } from "./objects.js";
-import { display, projects, currentProject, clearForms } from "./index.js";
+import { display, projects, currentProject, currentTodo, clearForms } from "./index.js";
 
 // adds functionality to buttons
 export function setUpButtons() {
@@ -30,12 +30,42 @@ export function setUpButtons() {
     newTodoSubmit.addEventListener("click", (event) => {
         event.preventDefault();
         display.hideAllForms();
-        const title = document.getElementById("title").value;
-        const description = document.getElementById("description").value;
-        const dueDate = document.getElementById("due-date").value;
-        const priority = document.getElementById("priority").value;
+        const title = document.querySelector(".new-todo #title").value;
+        const description = document.querySelector(".new-todo #description").value;
+        const dueDate = document.querySelector(".new-todo #due-date").value;
+        const priority = document.querySelector(".new-todo #priority").value;
         const newTodo = new Todo(title, description, dueDate, priority);
         currentProject.addTodo(newTodo);
+        display.displayTodos(currentProject);
+        clearForms();
+    });
+
+    const todoDetailsSubmit = document.querySelector(".todo-details .submit");
+    todoDetailsSubmit.addEventListener("click", (event) => {
+        event.preventDefault();
+        display.hideAllForms();
+        currentTodo.title = document.querySelector(".todo-details #title").value;
+        currentTodo.description = document.querySelector(".todo-details #description").value;
+        currentTodo.dueDate = document.querySelector(".todo-details #due-date").value;
+        currentTodo.priority = document.querySelector(".todo-details #priority").value;
+        display.displayTodos(currentProject);
+        clearForms();
+    });
+
+    const todoDetailsComplete = document.querySelector(".todo-details .complete");
+    todoDetailsComplete.addEventListener("click", (event) => {
+        event.preventDefault();
+        display.hideAllForms();
+        currentTodo.changeComplete();
+        display.displayTodos(currentProject);
+        clearForms();
+    });
+
+    const todoDetailsDelete = document.querySelector(".todo-details .delete");
+    todoDetailsDelete.addEventListener("click", (event) => {
+        event.preventDefault();
+        display.hideAllForms();
+        currentTodo.delete();
         display.displayTodos(currentProject);
         clearForms();
     });

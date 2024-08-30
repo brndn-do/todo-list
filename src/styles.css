@@ -73,6 +73,14 @@ button.new-todo {
     gap: 1rem;
 }
 
+.todo-div {
+    border: 1px solid;
+}
+
+.todo-div.complete {
+    background-color: rgb(229, 255, 229);
+}
+
 .todo-due {
     margin-top: .25rem;
     margin-left: .25rem;
