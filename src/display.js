@@ -37,7 +37,7 @@ export class Display {
             todoTitle.textContent = todo.title;
             const todoDue = document.createElement("div");
             todoDue.classList.add("todo-due");
-            todoDue.textContent = "Due " + todo.dueDate;
+            todoDue.textContent = todo.dueDate;
             todoDiv.appendChild(todoTitle);
             todoDiv.appendChild(todoDue);
             todoDiv.addEventListener("click", () => {
