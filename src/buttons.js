@@ -1,7 +1,9 @@
-//buttons.js
+// buttons.js
+// Responsible for setting up buttons related to forms by adding event listeners
 
 import { Project, Todo } from "./objects.js";
 import { display, projects, currentProject, currentTodo, clearForms } from "./index.js";
+import { format, toDate } from "date-fns";
 
 // adds functionality to buttons
 export function setUpButtons() {
@@ -32,7 +34,8 @@ export function setUpButtons() {
         display.hideAllForms();
         const title = document.querySelector(".new-todo #title").value;
         const description = document.querySelector(".new-todo #description").value;
-        const dueDate = document.querySelector(".new-todo #due-date").value;
+        let dueDate = document.querySelector(".new-todo #due-date").value;
+        dueDate = format(toDate(dueDate), 'MMM dd');
         const priority = document.querySelector(".new-todo #priority").value;
         const newTodo = new Todo(title, description, dueDate, priority);
         currentProject.addTodo(newTodo);
@@ -46,7 +49,8 @@ export function setUpButtons() {
         display.hideAllForms();
         currentTodo.title = document.querySelector(".todo-details #title").value;
         currentTodo.description = document.querySelector(".todo-details #description").value;
-        currentTodo.dueDate = document.querySelector(".todo-details #due-date").value;
+        const dueDate = document.querySelector(".todo-details #due-date").value;
+        currentTodo.dueDate = format(toDate(dueDate), 'MMM dd');
         currentTodo.priority = document.querySelector(".todo-details #priority").value;
         display.displayTodos(currentProject);
         clearForms();

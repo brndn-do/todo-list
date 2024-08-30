@@ -1,4 +1,5 @@
 // objects.js
+// Todo and Project objects
 
 export class Todo {
     #deleted

@@ -1,4 +1,5 @@
 // display.js
+// Responsible for controlling how items are displayed on the DOM
 
 import { projects, currentProject, currentTodo, switchProject, switchTodo } from "./index.js"
 

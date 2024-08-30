@@ -6,6 +6,7 @@ import "./styles.css";
 import { Display } from "./display.js";
 import { Todo, Project } from "./objects.js";
 import { setUpButtons } from "./buttons.js";
+import { format, toDate } from "date-fns";
 
 export const display = new Display();
 export const projects = []; // list of projects
@@ -35,7 +36,7 @@ setUpButtons();
 
 currentProject = new Project("Today");
 projects.push(currentProject);
-const doLeetCode = new Todo("30 Minutes of TOP", "", "8/29/2024", "");
-currentProject.addTodo(doLeetCode);
+const task = new Todo("Finish todo list", "", format(toDate("8/31/2024"), "MMM dd"), "");
+currentProject.addTodo(task);
 display.displayProjects();
 switchProject(currentProject);
